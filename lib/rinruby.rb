@@ -149,7 +149,7 @@ class RinRuby
     raise "Engine closed" if @engine.closed?
     
     @writer.puts <<-EOF
-      assign("#{RinRuby_Env}", new.env(), baseenv())
+      assign("#{RinRuby_Env}", new.env(), envir = globalenv())
     EOF
     @socket = nil
     [:socket_io, :get_value, :pull, :check].each{|fname| self.send("r_rinruby_#{fname}")}
