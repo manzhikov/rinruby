@@ -1,6 +1,8 @@
 # coding: utf-8
 require_relative 'lib/rinruby/version'
 
+ruby_version = RUBY_VERSION.split('.').map { |x| x.to_i }
+
 Gem::Specification.new do |spec|
   spec.name          = "rinruby"
   spec.version       = RinRuby::VERSION
@@ -15,6 +17,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
+
+  spec.add_dependency "matrix" if (ruby_version <=> [3, 1, 0]) >= 0
 
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", ">= 3.0"
